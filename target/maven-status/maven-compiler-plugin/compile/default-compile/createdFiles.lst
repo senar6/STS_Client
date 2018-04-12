@@ -1,0 +1,4 @@
+org/demo/spring_amqp_client_demo/Config.class
+org/demo/spring_amqp_client_demo/App.class
+org/demo/spring_amqp_client_demo/ClientController.class
+org/demo/spring_amqp_client_demo/Client.class

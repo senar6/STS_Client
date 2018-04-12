@@ -1,0 +1,1560 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>CitiChat</title>
+		<meta charset="UTF-8"/>
+		<meta name="referrer" content="no-referrer"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta http-equiv="cleartype" content="on"/>
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="mobile-web-app-capable" content="yes"/>
+		<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+		<meta name="apple-mobile-web-app-title" content="title"/>
+		<meta http-equiv="Expires" content="0"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<style>
+		div.citi-chat * {
+			font-family: Interstate_Light,sans-serif !important;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			outline: none;
+			transition: none;
+		}
+		div.citi-chat {
+			width: 100%;
+			cursor: default;
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			z-index: 10000000;
+		}
+		div.citi-chat-header {
+			position: absolute;
+			height: 55px;
+			top: 0px;
+			left: 0;
+			right: 0;
+			padding: 0;
+			width: 100%;
+			color: #FFFFFF;
+			font-weight: bold;
+			border-left: 1px solid #0256A0;
+			border-right: 1px solid #0256A0;
+			background: linear-gradient(to bottom,#0256A0,#0D2B48);
+			background: -moz-linear-gradient(top,#0256A0,#0D2B48);
+			background: -ms-linear-gradient(top,#0256A0,#0D2B48);
+			background: -o-linear-gradient(top,#0256A0,#0D2B48);
+			background: -webkit-linear-gradient(top,#0256A0,#0D2B48);
+			background: -webkit-gradient(linear,left top,left bottom,from(#0256A0),to(#0D2B48));
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#0256A0, endColorstr=#0D2B48);
+		}
+		div.citi-chat-body {
+			position: absolute;
+			top: 55px;
+			bottom: 70px;
+			left: 0;
+			right: 0;
+			width: 100%;
+			display: block;
+			margin: 0;
+			padding: 0px 1% 0px 1%;
+			background: #FFFFFF;
+			overflow-x: hidden;
+			overflow-y: auto;
+			border-left: 1px solid #CCCCCC;
+			border-right: 1px solid #CCCCCC;
+		}
+		div.citi-chat-footer {
+			position: absolute;
+			height: 70px;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: 0;
+			padding: 21px 4% 10px 4%;
+			width: 100%;
+			outline: 0px;
+			border-right: 1px solid #CCCCCC;
+			border-left: 1px solid #CCCCCC;
+			background: #F5F5F5;
+			z-index: 10000;
+		}
+		div.citi-chat .citi-chat-header a,
+		div.citi-chat .citi-chat-footer a {
+			text-decoration: none;
+			cursor: pointer;
+			color: #FFFFFF;
+		}
+		div.citi-chat .citi-chat-header a:visited,
+		div.citi-chat .citi-chat-header a:active,
+		div.citi-chat .citi-chat-footer a:visited,
+		div.citi-chat .citi-chat-footer a:active {
+			text-decoration: none;
+			color: #FFFFFF;
+		}
+		div.citi-chat  ::-webkit-scrollbar {
+			width: 1px;
+			height: 1px;
+			z-index: 10;
+		}
+		div.citi-chat  ::-webkit-scrollbar-track {
+			background-color: #FFFFFF;
+		}
+		div.citi-chat ::-webkit-scrollbar-thumb {
+			background-color: #bec4c8;
+			border-radius: 3px;
+		}
+		div.citi-chat .citi-chat-body .citi-chat-body-message {
+			display: block;
+			width: 100%;
+			padding-top: 20px;
+		}
+		div.citi-chat .citi-chat-body .citi-chat-body-message p {
+			margin: 0;
+			padding: 0;
+		}
+		div.citi-chat .citi-chat-body-message .citi-chat-body-message-mymessage,
+		div.citi-chat .citi-chat-body-message .citi-chat-body-message-theirmessage {
+			word-wrap: break-word;
+			margin-bottom: 20px;
+			position: relative;
+			padding: 10px 15px;
+			border-radius: 20px;
+			clear: both;
+			max-width: 70%;
+		}
+		div.citi-chat .citi-chat-body-message .citi-chat-body-message-mymessage {
+			background: #004FA6;
+			color: #FFFFFF;
+			float: right;
+			border-bottom-right-radius: 20px 0px\9;
+			margin-right: 35px !important;
+		}
+		div.citi-chat .citi-chat-body-message .citi-chat-body-message-mymessage:before {
+			content: "";
+			position: absolute;
+			z-index: 1;
+			bottom: -2px;
+			right: -8px;
+			height: 19px;
+			border-right: 20px solid #004FA6;
+			border-bottom-left-radius: 16px 14px;
+			-webkit-transform: translate(0, -2px);
+			transform: translate(0, -2px);
+			border-bottom-right-radius: 15px 0px\9;
+			transform: translate(-1px, -2px)\9;
+			color: #004FA6;
+		}
+		div.citi-chat .citi-chat-body-message .citi-chat-body-message-mymessage:after {
+			content: "";
+			position: absolute;
+			z-index: 1;
+			bottom: -2px;
+			right: -42px;
+			width: 12px;
+			height: 20px;
+			background: #FFFFFF;
+			border-bottom-left-radius: 10px;
+			-webkit-transform: translate(-30px, -2px);
+			transform: translate(-30px, -2px);
+			color: #004FA6;
+		}
+		div.citi-chat .citi-chat-body-message .citi-chat-body-message-theirmessage {
+			background: #E8E8E8;
+			color: #323232;
+			float: left;
+			border-bottom-left-radius: 30px 0px\9;
+			margin-left: 35px !important;
+		}
+		div.citi-chat .citi-chat-body-message .citi-chat-body-message-theirmessage:before {
+			content: "";
+			position: absolute;
+			z-index: 2;
+			bottom: -2px;
+			left: -7px;
+			height: 19px;
+			border-left: 20px solid #E8E8E8;
+			border-bottom-right-radius: 16px 14px;
+			-webkit-transform: translate(0, -2px);
+			transform: translate(0, -2px);
+			border-bottom-right-radius: 15px 0px\9;
+			transform: translate(-1px, -2px)\9;
+		}
+		div.citi-chat .citi-chat-body-message .citi-chat-body-message-theirmessage:after {
+			content: "";
+			position: absolute;
+			z-index: 3;
+			bottom: -2px;
+			left: 16px;
+			width: 14px;
+			height: 20px;
+			background: #FFFFFF;
+			border-bottom-right-radius: 10px;
+			-webkit-transform: translate(-30px, -2px);
+			transform: translate(-30px, -2px);
+		}
+		div.citi-chat .citi-chat-footer .citi-chat-footer-sendbtn {
+			display: none;
+			color: #FFFFFF;
+			height: 22px;
+			width: 22px;
+			bottom: 16px;
+			z-index: 9999;
+			position: absolute;
+			right: 1%;
+			align-items: center;
+			float: left;
+    		padding-top: 0px;
+		}
+		div.citi-chat .citi-chat-footer .citi-chat-textarea {
+			resize: none;
+			display: block;
+			padding: 8px 20px 0px 20px;
+			width: 99%;
+			background: #FFFFFF;
+			overflow-x: hidden;
+			overflow-y: hidden;
+			height: 35px;
+			color: #323232;
+			z-index: 1;
+			border-radius:0;
+			border:0px
+		}
+		div.citi-chat .citi-chat-footer .citi-chat-footer-first-div {
+			width: 100%;
+			border: 1px solid #c9c8c8;
+			background: #ffffff;
+			border-radius: 2.5em;
+			overflow: hidden;
+			float:left;
+		}
+		div.citi-chat .citi-chat-footer .citi-chat-footer-second-div {
+			width: 2%;
+			overflow: hidden;
+		}
+		div.citi-chat .citi-chat-header .citi-chat-header-cross {
+			width: 15%;
+			height: 100%;
+			float: left;
+			margin: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		div.citi-chat .citi-chat-header .citi-chat-header-label {
+			width: 60%;
+			height: 100%;
+			float: left;
+			margin: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		div.citi-chat .citi-chat-header .citi-chat-header-maxmin {
+			width: 15%;
+			height: 100%;
+			float: left;
+			margin: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		@media screen and (max-width: 200px) and (min-width: 0px) {
+				div.citi-chat .citi-chat-body-message .citi-chat-body-message-mymessage,
+				div.citi-chat .citi-chat-body-message .citi-chat-body-message-theirmessage,
+				div.citi-chat .citi-chat-footer .citi-chat-textarea {
+					font-size: 14px;
+				}
+				div.citi-chat .citi-chat-footer .citi-chat-footer-sendbtn {
+					font-size: 16px;
+				    font-weight: bold;
+				}
+				div.citi-chat .citi-chat-header .citi-chat-header-cross,
+				div.citi-chat .citi-chat-header .citi-chat-header-maxmin {
+					font-size: 16px;
+				}
+				div.citi-chat .citi-chat-header .citi-chat-header-label {
+					font-size: 16px;
+				}
+				div.citi-chat-profile-image-my,
+				div.citi-chat-profile-image-their {
+					font-size: 12px;
+				}
+				div.citi-chat-date-separate {
+					font-size: 12px;
+				}
+				div.citi-chat-defaultmessage-content {
+					font-size: 13px;
+				}
+				div.citi-chat-body-message-timestamp-my span,
+				div.citi-chat-body-message-timestamp-their span  {
+					font-size: 12px;
+				}
+				div.citi-chat-body-message-timestamp-my span span,
+				div.citi-chat-body-message-timestamp-their span span {
+					font-size: 13px;
+				}
+				a.citi-chat-automessage-list-group-item {
+					font-size: 13px;
+				}
+				.citi-chat-body-quickreply div {
+					font-size: 12px;
+				}
+				div.citi-chat-body-quickreply::-webkit-scrollbar {
+			    	height: 1px;
+				}
+				div.citi-chat-body-piidisclaimer {
+					font-size: 14px;
+				}
+			}
+			@media screen and (max-width: 1024px) and (min-width: 201px) {
+				div.citi-chat .citi-chat-body-message .citi-chat-body-message-mymessage,
+				div.citi-chat .citi-chat-body-message .citi-chat-body-message-theirmessage,
+				div.citi-chat .citi-chat-footer .citi-chat-textarea {
+					font-size: 16px;
+				}
+				div.citi-chat .citi-chat-footer .citi-chat-footer-sendbtn {
+					font-size: 16px;
+				    font-weight: bold;
+				}
+				div.citi-chat .citi-chat-header .citi-chat-header-cross,
+				div.citi-chat .citi-chat-header .citi-chat-header-maxmin {
+					font-size: 14px;
+				}
+				div.citi-chat .citi-chat-header .citi-chat-header-label {
+					font-size: 13px;
+				}
+				div.citi-chat-profile-image-my,
+				div.citi-chat-profile-image-their {
+					font-size: 12px;
+				}
+				div.citi-chat-date-separate {
+					font-size: 12px;
+				}
+				div.citi-chat-defaultmessage-content {
+					font-size: 13px;
+				}
+				div.citi-chat-body-message-timestamp-my span,
+				div.citi-chat-body-message-timestamp-their span {
+					font-size: 12px;
+				}
+				div.citi-chat-body-message-timestamp-my span span,
+				div.citi-chat-body-message-timestamp-their span span {
+					font-size: 13px;
+				}
+				a.citi-chat-automessage-list-group-item {
+					font-size: 13px;
+				}
+				.citi-chat-body-quickreply div {
+					font-size: 12px;
+				}
+				div.citi-chat-body-quickreply::-webkit-scrollbar {
+			    	height: 1px;
+				}
+				div.citi-chat-body-piidisclaimer {
+					font-size: 14px;
+				}
+			}
+		@media screen and (min-width: 1025px) {
+			div.citi-chat {
+				width: 250px !important;
+				height: 380px !important;
+				right: 10px !important;
+				left: inherit !important;
+				top: inherit;
+				position: fixed;
+				bottom: 0;
+			}
+			div.citi-chat .citi-chat-body-message .citi-chat-body-message-mymessage,
+			div.citi-chat .citi-chat-body-message .citi-chat-body-message-theirmessage,
+			div.citi-chat .citi-chat-footer .citi-chat-textarea {
+				font-size: 9pt;
+			}
+			div.citi-chat .citi-chat-footer .citi-chat-footer-sendbtn {
+				font-size: 16pt;
+			}
+			div.citi-chat .citi-chat-header .citi-chat-header-cross,
+			div.citi-chat .citi-chat-header .citi-chat-header-maxmin {
+				font-size: 12pt;
+			}
+			div.citi-chat .citi-chat-header .citi-chat-header-label {
+				font-size: 10pt;
+			}
+			div.citi-chat-profile-image-my,
+			div.citi-chat-profile-image-their {
+				font-size: 12pt;
+			}
+			div.citi-chat-date-separate {
+				font-size: 10pt;
+			}
+			div.citi-chat-defaultmessage-content {
+				font-size: 9pt;
+			}
+			div.citi-chat-body-message-timestamp-my span,
+			div.citi-chat-body-message-timestamp-their span  {
+				font-size: 8pt;
+			}
+			div.citi-chat-body-message-timestamp-my span span,
+			div.citi-chat-body-message-timestamp-their span span {
+				font-size: 9pt;
+			}
+			div.citi-chat .citi-chat-body-message .citi-chat-body-message-mymessage,
+			div.citi-chat .citi-chat-body-message .citi-chat-body-message-theirmessage {
+				max-width: 60% !important;
+			}
+			div.citi-chat .citi-chat-footer .citi-chat-textarea {
+				padding-top: 9px;
+			}
+			div.citi-chat-body-feedbackoverlay .citi-chat-survey-heading {
+				font-size: 10pt !important;
+			}
+			div.citi-chat-body-feedbackoverlay .citi-chat-survey-heading-description {
+				font-size: 8pt !important;
+			}
+			div.citi-chat-survey-rating a {
+				line-height: 1.6 !important;
+			}
+			div.citi-chat-survey-question-button div {
+				width: 35px !important;
+				height: 35px !important;
+				font-size: 20px !important;
+			}
+			a.citi-chat-automessage-list-group-item {
+				font-size: 10pt;
+			}
+			.citi-chat-body-quickreply div {
+				font-size: 10pt;
+			}
+			div.citi-chat-body-quickreply::-webkit-scrollbar {
+			    height: 4px;
+			}
+			div.citi-chat-body-piidisclaimer {
+				font-size: 10pt;
+			}
+		}
+		div.citi-chat .citi-chat-body-overlay {
+			position: absolute;
+			top: 55px;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: 0;
+			padding: 2% 7%;
+			width: 100%;
+			overflow-x: hidden;
+			overflow-y: auto;
+			border-left: 1px solid #cccccc;
+			border-right: 1px solid #cccccc;
+			min-width: 100%;
+			z-index: 9999;
+			background: #cccccc;
+		}
+		div.citi-chat .citi-chat-body-feedbackoverlay {
+			display: none;
+			position: absolute;
+			top: 55px;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: 0;
+			overflow-x: hidden;
+			overflow-y: auto;
+			border-top: 1px solid #CCCCCC;
+			border-left: 1px solid #CCCCCC;
+			border-right: 1px solid #CCCCCC;
+			min-width: 100%;
+			z-index: 9999;
+			background: #e2e2e2;
+		}
+		ul.citi-chat-list-group {
+			padding-left: 0;
+			margin-bottom: 20px;
+			cursor: pointer;
+			margin-top: 4px;
+		}
+		ul.citi-chat-list-group label {
+			cursor: pointer;
+		}
+		ul.citi-chat-list-group .citi-chat-list-group-item {
+			position: relative;
+			display: block;
+			padding: 10px 15px;
+			margin-bottom: -1px;
+			background-color: #ffffff;
+			border: 1px solid #cccccc;
+			font-size: 14px;
+			font-weight: bold;
+			color: #0066b3;
+		}
+		ul.citi-chat-list-group .citi-chat-list-group-item img {
+			position: relative;
+			top: 2px;
+			left: -5px;
+		}
+		ul.citi-chat-list-group .citi-chat-list-group-item:hover {
+			background-color: #8bbbd5;
+		}
+		li.citi-chat-list-group-item:first-child {
+			border-top-left-radius: 4px;
+			border-top-right-radius: 4px;
+		}
+		li.citi-chat-list-group-item:last-child {
+			margin-bottom: 0;
+			border-bottom-right-radius: 4px;
+			border-bottom-left-radius: 4px;
+		}
+		li.citi-chat-list-group-item>.citi-chat-badge {
+			float: right;
+		}
+		li.citi-chat-list-group-item .citi-chat-badge {
+			display: inline-block;
+			min-width: 10px;
+			padding: 3px 7px;
+			font-size: 12px;
+			font-weight: 700;
+			line-height: 1;
+			color: #fff;
+			text-align: center;
+			white-space: nowrap;
+			vertical-align: middle;
+			background-color: #0066b3;
+			border-radius: 10px;
+		}
+		.citi-chat-header-meeting-room-icon {
+			width: 9%;
+			height: 68%;
+			float: left;
+			display: none;
+			position: relative;
+			top: 8px;
+		}
+		.citi-chat-header-meeting-room-icon:hover {
+			cursor: pointer;
+			opacity: 0.5;
+		}
+		.citi-chat-search-inputbox {
+			background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAACgElEQVQ4T6WVyWvqUBTGT6qtE0pVRBeCUFduKmIXiohSnP5lRQwdUKoi3RVBqy5cifOAc8p3IHkOeXmUdyBEk3t/97vnfPdEkCRJopM4HA7U7XZpOBzSarXiN0ajkex2O/l8Pv79rxBOoc1mk9rtNt3d3dHNzQ0JgsDzse7xeKTdbkcej4dCoZAmV4FWq1WaTCZ0e3vLE6AYIATger1eeY4xiUTir2CGQmGv12OFMszv95PT6WTFWKzVavE7wPf7Pd3f39PT05MqWNjv91I+nyeTycTKkLNYLKY6uNFo0Gg0YvB6vaZIJMLwyxBarZbU6XRIp9OxgnQ6rZmv19dXHoc8AxgOh6+hHx8f0mKxYJUPDw98acVgMKDPz09Wu91uKZvNXkNFUWQDoLLYjs1m04Qir8VikQwGA6cgk8lw3k9DKJVK7FNAo9EoWa1WTSgEFAoFBZpKpRRnyBOFcrksYUXkKRAIkNfr1YTCCbAfbLXZbCiXy11v/+vrS+r3++xFbCOZTGpCAUQNEGazmVN2Vf3lcim9vLywpaDW5XJRMBhUBcOr39/f7Gek6/Hxkdxu9zUUVarX62xwVBSDoQCpcDgcPGE2mxEOyHg8ZqBcWOTzskh8AuWzL4qicmJgL6iWjykmwse4AESqcIelnp+flaOtFOq0oVQqFZpOp6xGbibyQEBgJ9xRJLyXmwzqAIupQvEQ5kanQjpkMCbDv+gHOMZYHHdZMVyABoO6nG1frTIYjDhVgf/YTblcvgLH43GyWCx/cqrpI5WX8/mc3t/fz8DwOxSfNenfguHXt7c3BYw0wUH/BYUIfHLQuVBcBH8xLr9Rv1WL8ch9rVZjj6Nx/wAlt5ASn7Pz7QAAAABJRU5ErkJggg==');
+			background-position: 10px 10px;
+			background-repeat: no-repeat;
+			width: 100%;
+			font-size: 14px;
+			padding: 12px 10px 12px 40px;
+			border: 1px solid #dddddd;
+		}
+		div.citi-chat ::-webkit-input-placeholder {
+			color: #cccccc;
+		}
+		div.citi-chat :-moz-placeholder {
+		   color: #cccccc;
+		   opacity: 1;
+		}
+		div.citi-chat ::-moz-placeholder {
+		   color: #cccccc;
+		   opacity: 1;
+		}
+		div.citi-chat :-ms-input-placeholder {
+		   color: #cccccc;
+		}
+		div.citi-chat ::-ms-input-placeholder {
+		   color: #cccccc;
+		}
+		div.citi-chat-profile-image-their {
+			border: 1px solid #0A9BD2;
+			background: linear-gradient(to bottom,#0A9BD2,#0A4B87);
+			background: -moz-linear-gradient(top,#0A9BD2,#0A4B87);
+			background: -ms-linear-gradient(top,#0A9BD2,#0A4B87);
+			background: -o-linear-gradient(top,#0A9BD2,#0A4B87);
+			background: -webkit-linear-gradient(top,#0A9BD2,#0A4B87);
+			background: -webkit-gradient(linear,left top,left bottom,from(#0A9BD2),to(#0A4B87));
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#0A9BD2, endColorstr=#0A4B87);
+			border-radius: 50%;
+			color: #FFFFFF;
+			height: 27px;
+			width: 27px;
+			line-height: 26px;
+			left: -32px;
+			position: absolute;
+			text-align: center;
+			bottom: 1px;
+			z-index: 2000;
+		}
+		div.citi-chat-profile-image-my {
+			border: 1px solid #0256A0;
+			background: linear-gradient(to bottom,#0256A0,#0D2B48);
+			background: -moz-linear-gradient(top,#0256A0,#0D2B48);
+			background: -ms-linear-gradient(top,#0256A0,#0D2B48);
+			background: -o-linear-gradient(top,#0256A0,#0D2B48);
+			background: -webkit-linear-gradient(top,#0256A0,#0D2B48);
+			background: -webkit-gradient(linear,left top,left bottom,from(#0256A0),to(#0D2B48));
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#0256A0, endColorstr=#0D2B48);
+			border-radius: 50%;
+			color: #FFFFFF;
+			height: 27px;
+			width: 27px;
+			line-height: 26px;
+			right: -32px;
+			position: absolute;
+			text-align: center;
+			bottom: 1px;
+			z-index: 2000;
+		}
+		div.citi-chat-no-after-before:after{content:none !important;}
+		div.citi-chat-no-after-before:before{content:none !important;}
+		div.citi-chat-date-separate {
+			text-align: center;
+			clear: both;
+			color: #767676;
+		}
+		div.citi-chat-date-separate span {
+			background: #F5F5F5;
+			border-radius: 25px;
+			padding-left: 3%;
+			padding-right: 3%;
+		}
+		div.citi-chat-body-defaultmessage {
+			width: 100% !important;
+		}
+		div.citi-chat-defaultmessage-content {
+			text-align: center;
+			clear: both;
+			background: #F5f5f5;
+			color: #323232;
+			padding: 20px 3px 20px 3px;
+		}
+		div.citi-chat-body-message-timestamp-my {
+			clear: both;
+			color: #767676;
+			text-align: right;
+			margin-right: 35px !important;
+		}
+		div.citi-chat-body-message-timestamp-their {
+			clear: both;
+			color: #767676;
+			text-align: left;
+			margin-left: 35px !important;
+		}
+		div.citi-chat-display-info {
+			height: 100%;
+			width: 100%;
+			vertical-align: middle;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #083c6c;
+		}
+		img.citi-chat-loader-img {
+			width: 100%;
+			height: auto !important;
+		}
+		div.citi-chat-body-feedbackoverlay .citi-chat-survey-heading {
+			font-size: 13pt;
+		    text-align: center;
+		    font-weight: bold;
+		    color: #323232;
+		    padding-top: 25px;
+		}
+		div.citi-chat-body-feedbackoverlay .citi-chat-survey-heading-description {
+			font-size: 12pt;
+		    text-align: center;
+			clear: both;
+			color: #323232;
+			padding: 20px 3px 20px 3px;
+		}
+		div.citi-chat-survey-rating {
+			display: table;
+			width: 100%;
+			table-layout: fixed;
+			cursor: pointer;
+			padding: 2% 7%;
+		}
+		div.citi-chat-survey-rating a {
+			display: table-cell;
+			text-align: center;
+			background-color: #FFFFFF;
+			border-right: 1px solid #e2e2e2;
+			line-height: 2.2;
+			color: #b6b6b6;
+			text-decoration: none;
+		}
+		div.citi-chat-survey-rating a:last-child {
+			border-right: 0 !important;
+		}
+		div.citi-chat-survey-rating a.citi-chat-selected-rating {
+		 	background-color: #093864;
+		 	color: #FFFFFF;
+		 	position: relative;
+		}
+		a.citi-chat-selected-rating span::before {
+			content: "";
+			background: #093864;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			z-index: -1;
+			top: -3px;
+			left: 0px;
+		}
+		a.citi-chat-selected-rating span::after {
+		    content: "";
+			background: #093864;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			z-index: -1;
+			bottom: -3px;
+			left: 0px;
+		}
+		div.citi-chat-survey-rating a.citi-chat-selected-prev-rating {
+		 	background-color: #8db9d5;
+		 	color: #0065b3;
+		}
+		div.citi-chat-survey-rating-text {
+			height: 32px;
+		}
+		div.citi-chat-survey-rating-text p {
+			font-size: 8pt;
+			color: #8e8f8f;
+			float: left;
+			padding: 0% 7%;
+		}
+		div.citi-chat-survey-rating-text p:last-child {
+			float: right;
+		}
+		hr.citi-chat-survey-horizontal-separator {
+		 	display: block;
+			width: 100%;
+		}
+		div.citi-chat-survey-greeting {
+			display: none;
+		}
+		div.citi-chat-survey-question {
+			// display: none;
+			padding: 0 7%;
+		}
+		div.citi-chat-survey-question-button {
+			display: flex;
+			justify-content: center;
+		}
+		div.citi-chat-survey-question-button div {
+			width: 50px;
+			height: 50px;
+			float: left;
+			background: #a2a0a0;
+		    border-radius: 50%;
+		    margin: 0 10% 5% 0;
+		    display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #ffffff;
+			font-size: 30px;
+			cursor: pointer;
+		}
+		div.citi-chat-survey-question-button div:last-child {
+			margin-right: 0 !important;
+		}
+		.citi-chat-automessage-list-group {
+			//padding-left: 0;
+			//margin-bottom: 20px;
+		}
+		.citi-chat-automessage-list-group-item:first-child {
+		    border-top-left-radius: 4px;
+		    border-top-right-radius: 4px;
+		}
+		.citi-chat-automessage-list-group-item:last-child {
+		    margin-bottom: 0;
+		    border-bottom-right-radius: 4px;
+		    border-bottom-left-radius: 4px;
+		}
+		a.citi-chat-automessage-list-group-item,
+		a.citi-chat-automessage-list-group-item:visited  {
+		    color: #0077bb;
+		    text-decoration: none;
+		}
+		.citi-chat-automessage-list-group-item {
+		    text-align: center;
+		    position: relative;
+		    display: block;
+		    padding: 11px 10px;
+		    margin-bottom: -1px;
+		    background-color: #fff;
+		    border: 1px solid #e8e8e8;
+		    cursor: pointer;
+	        clear: both;
+		}
+		.citi-chat-body-message-automessage {
+			background: #FFFFFF !important;
+			max-width: 80%;
+    		min-width: 80%;
+    		margin-left: 35px;
+		}
+		.citi-chat-body-message-automessage div.citi-chat-profile-image-their {
+			position: relative !important;
+			bottom: 42px !important;
+		}
+		div.citi-chat-body-quickreply {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 70px; /* 55px; */
+			display: none;
+			margin: 0;
+			padding: 4px 1% 0px 1%;
+			border-left: 1px solid #CCCCCC;
+			border-right: 1px solid #CCCCCC;
+			overflow-x: auto;
+			overflow-y: hidden;
+			white-space: nowrap;
+			background: #FFFFFF;
+		}
+		.citi-chat-body-quickreply div {
+			display: inline-block;
+			min-width: 30%;
+			border: 1px solid #0077bb;
+			color: #0077bb;
+			padding: 5px;
+			border-radius: 25px;
+			background: #f9f9f9;
+			text-align: center;
+			cursor: pointer;
+			margin-left: 1%;
+		}
+		div.citi-chat-body-piidisclaimer {
+			position: absolute;
+		    left: 0;
+		    right: 0;
+		    top: 0;
+		    display: none;
+		    margin: 0;
+		    overflow: hidden;
+		    height: auto;
+		    background: #000000;
+		    color: #ffffff;
+		    padding: 4px;
+		    z-index: 11;
+    		text-align: center;
+		}
+		div.citi-chat-body-quickreply::-webkit-scrollbar {
+		    width: 1px;
+		    z-index: 10;
+		}
+		div.citi-chat-body-quickreply::-webkit-scrollbar-thumb {
+		    background-color: #bec4c8;
+		    border-radius: 3px;
+		}
+		div.citi-chat-body-quickreply::-webkit-scrollbar-track {
+		    background-color: #FFFFFF;
+		}
+		div.citi-chat-body-errormessage {
+		    position: absolute;
+		    left: 0;
+		    right: 0;
+		    top: 55px;
+		    display: none;
+		    margin: 0;
+		    padding: 2px;
+		    border-left: 1px solid #CCCCCC;
+		    border-right: 1px solid #CCCCCC;
+		    overflow: hidden;
+		    white-space: nowrap;
+		    z-index: 1000000000;
+		    text-align: center;
+		    color: #a94442;
+		    background-color: #f2dede;
+		}
+		#citiChatLoaderImage {
+		    position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    margin-left: -(X/2)px;
+		    margin-top: -(Y/2)px;
+		    z-index: 1;
+		}
+		p.citi-chat-sending-text {
+		    position: absolute;
+		    right: 1px;
+		    padding-top: 12px !important;
+		    //padding-top: 10px !important;
+		    font-size: 10px;
+		    color: #767676;
+		    font-weight: bold;
+		}
+		div.citi-chat-typing {
+			font-style: italic;
+		}
+		div.citi-chat-footer-agent-typing {
+			background: #f5f5f5;
+		    margin: 0 !important;
+		    height: 20px;
+		    font-size: 14px;
+		    position: absolute;
+		    top: 0;
+		    width: 100%;
+		    left: 0;
+		    padding-left: 14px;
+		    font-style: italic;
+		    color: #7b7a7a;
+		}
+		div.citi-chat-footer-agent-typing span {
+			display: none;
+		}
+		label.citi-chat-footer-agent-typing-text {
+			animation: agent-typing-blink 2s linear infinite;
+			font-weight: bold;
+		}
+		@keyframes agent-typing-blink {
+			0%{opacity: 0;}
+			50%{opacity: .5;}
+			100%{opacity: 1;}
+		}
+
+		/* Spinner CSS start */
+		div.spinner {
+			position: absolute;
+			width: 54px;
+			height: 54px;
+			background: #cbcbcb;
+			padding: 10px;
+			border-radius: 10px;
+			top: 42% !important;
+			left: 42%  !important;
+		}
+		
+		div.spinner div {
+			width: 6%;
+			height: 16%;
+			background: #FFF;
+			position: absolute;
+			left: 49%;
+			top: 43%;
+			opacity: 0;
+			-webkit-border-radius: 50px;
+			-webkit-box-shadow: 0 0 3px rgba(0,0,0,0.2);
+			-webkit-animation: fade 1s linear infinite;
+		}
+		
+		@-webkit-keyframes fade {
+		  from {opacity: 1;}
+		  to {opacity: 0.25;}
+		}
+		
+		div.spinner div.bar1 {
+		  -webkit-transform:rotate(0deg) translate(0, -130%);
+		  -webkit-animation-delay: 0s;
+		}    
+		
+		div.spinner div.bar2 {
+		  -webkit-transform:rotate(30deg) translate(0, -130%); 
+		  -webkit-animation-delay: -0.9167s;
+		}
+		
+		div.spinner div.bar3 {
+		  -webkit-transform:rotate(60deg) translate(0, -130%); 
+		  -webkit-animation-delay: -0.833s;
+		}
+		div.spinner div.bar4 {
+		  -webkit-transform:rotate(90deg) translate(0, -130%); 
+		  -webkit-animation-delay: -0.7497s;
+		}
+		div.spinner div.bar5 {
+		  -webkit-transform:rotate(120deg) translate(0, -130%); 
+		  -webkit-animation-delay: -0.667s;
+		}
+		div.spinner div.bar6 {
+		  -webkit-transform:rotate(150deg) translate(0, -130%); 
+		  -webkit-animation-delay: -0.5837s;
+		}
+		div.spinner div.bar7 {
+		  -webkit-transform:rotate(180deg) translate(0, -130%); 
+		  -webkit-animation-delay: -0.5s;
+		}
+		div.spinner div.bar8 {
+		  -webkit-transform:rotate(210deg) translate(0, -130%); 
+		  -webkit-animation-delay: -0.4167s;
+		}
+		div.spinner div.bar9 {
+		  -webkit-transform:rotate(240deg) translate(0, -130%); 
+		  -webkit-animation-delay: -0.333s;
+		}
+		div.spinner div.bar10 {
+		  -webkit-transform:rotate(270deg) translate(0, -130%); 
+		  -webkit-animation-delay: -0.2497s;
+		}
+		div.spinner div.bar11 {
+		  -webkit-transform:rotate(300deg) translate(0, -130%); 
+		  -webkit-animation-delay: -0.167s;
+		}
+		div.spinner div.bar12 {
+		  -webkit-transform:rotate(330deg) translate(0, -130%); 
+		  -webkit-animation-delay: -0.0833s;
+		}
+		/* Spinner CSS end */
+		</style>
+	</head>
+	<body id="chatbody">
+	</body>
+	<script>
+var CitiChatService = (function() {
+	
+	var sendButtonIconUri = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAABX0lEQVRIS7XVu0oDQRQG4P9ns0GjkKhd0mgjai1YWVgGlMQ30AeImMoLBAIBL1XAF/AN3ASFlBZWQmpvjTZJpyZ4C0mWI7O6EkNidpHZ8szw7Zk5c2aIPl94+2zsvdFK0EYCwJxAomoqwSqAKzFQDA2ZxfrB8nMvgt3Byez5UPWplhaRLQDhfj/+jtdJHkbHI/mH7FKjc+4veDh9Gmu32wVA5geAXcMsBwKB5Ed+peIO/MAKte3WpQhi/tCv2SQqhmEuuLgDq+VXHmsX/jPtToHl2ERkUW2LAwc3rB0R2euVaSY+44RzpRtPCyG52zxa3adT/bfmfb9CKTgTn0WudO0Vr4dGglM0N6012HL8Vzq+cYPrDKYsSyDJQev0gxMsKPhWINODYDXuFSd4RzN18gJg1AvsA3/VB2vbCi3FIyx9x01bg2hraa2XkMK1XJtuc2i56F1cy9PU2db/fUw/AQlU93RNQiyZAAAAAElFTkSuQmCC";
+	var ajaxLoaderUri = "data:image/gif;base64,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";
+
+	
+	var chatBoxId = "citiChatBox";
+	var citichatElement = chatheaderElement = headermaxminbtnElement = headercrossbtnElement = headerlabelElement =
+	chatfooterElement = chatoverlayElement = feedbackoverlayElement = messagesElement = prependmessagesElement =
+	quickreplyElement = textinputElement = sendbtnElement = errormessageElement = piidisclaimerElement = chatfooterFirstDivElement =
+	chatfooterSecondDivElement = agenttypingElement = agentTypingSpanElement = "";
+	var setIds = function(id) {
+		citichatElement = document.getElementById(id.concat('citichat'));
+		chatheaderElement = document.getElementById(id.concat('chatheader'));
+		headermaxminbtnElement = document.getElementById(id.concat('headermaxminbtn'));
+		headercrossbtnElement = document.getElementById(id.concat('headercrossbtn'));
+		headerlabelElement = document.getElementById(id.concat('headerlabel'));
+		chatfooterElement = document.getElementById(id.concat('chatfooter'));
+		chatoverlayElement = document.getElementById(id.concat('chatoverlay'));
+		feedbackoverlayElement = document.getElementById(id.concat('feedbackoverlay'));
+		messagesElement = document.getElementById(id.concat('messages'));
+		prependmessagesElement = document.getElementById(id.concat('prependmessages'));
+		quickreplyElement = document.getElementById(id.concat('quickreply'));
+		textinputElement = document.getElementById(id.concat('textinput'));
+		sendbtnElement = document.getElementById(id.concat('sendbtn'));
+		errormessageElement = document.getElementById(id.concat('errormessage'));
+		piidisclaimerElement = document.getElementById(id.concat('piidisclaimer'));
+		chatfooterFirstDivElement = document.getElementById(id.concat('chatfooterfirstdiv'));
+		chatfooterSecondDivElement = document.getElementById(id.concat('chatfooterseconddiv'));
+		agenttypingElement = document.getElementById(id.concat('agenttyping'));
+	};
+
+	var resizeWindow = function() {
+		scrollToBottom(chatBoxId, "messages");
+		messagesElement.style.bottom = chatfooterElement.offsetHeight + "px";
+		quickreplyElement.style.bottom = chatfooterElement.offsetHeight + "px";
+	};
+
+	var chatBox = function(id, name, type) {
+		var userListOverlay = "",
+			scheduleMeetingRoomButton = "",
+			overwriteWidth = "width: 70%",
+			lpStyle = "",
+			lpStyleTop = "";
+		var chatBoxTemplate = '\
+			<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, height=device-height"> \
+			<div class="citi-chat-header" '+ lpStyle +' id="'+ id.concat('chatheader') +'"> \
+				<a onclick="CitiChatService.action(\'close\', \''+ id +'\')"><div class="citi-chat-header-cross" id="'+ id.concat('headercrossbtn') +'" title="'+ pageContent["closeButtonText"] +'">&#10005;</div></a> \
+				<div class="citi-chat-header-label" style="'+ overwriteWidth +'" id="'+ id.concat('headerlabel') +'">'+ name + '</div>' + scheduleMeetingRoomButton +  '\
+				<a onclick="CitiChatService.action(\'maxmin\', \''+ id +'\')"><div class="citi-chat-header-maxmin" id="'+ id.concat('headermaxminbtn') +'" title="'+ pageContent["minimizeButtonText"] +'">&#10134;</div></a> \
+			</div> \
+			'+ userListOverlay +' \
+			<div class="citi-chat-body-piidisclaimer" id="'+ id.concat('piidisclaimer') +'"></div> \
+			<div class="citi-chat-body-feedbackoverlay" id="'+ id.concat('feedbackoverlay') +'" '+ lpStyleTop +'></div> \
+			<div class="citi-chat-body-errormessage" id="'+ id.concat('errormessage') +'" '+ lpStyleTop +'></div> \
+			<div class="citi-chat-body" id="'+ id.concat('messages') +'" '+ lpStyleTop +'></div> \
+			<div style="display: none;" id="'+ id.concat('prependmessages') +'"></div> \
+			<div class="citi-chat-body-quickreply" id="'+ id.concat('quickreply') +'"></div> \
+			<div class="citi-chat-footer" id="'+ id.concat('chatfooter') +'"> \
+				<div class="citi-chat-footer-agent-typing"><span id="'+ id.concat('agenttyping') +'">Agent is typing<label class="citi-chat-footer-agent-typing-text" id="'+ id.concat('agenttypingspan') +'">......</label></span></div> \
+				<div class="citi-chat-footer-first-div" id="'+ id.concat('chatfooterfirstdiv') +'">\
+				<textarea placeholder="'+ pageContent["textInputPlaceholder"] +'" title="'+ pageContent["textInputPlaceholder"] +'" class="citi-chat-textarea" id="'+ id.concat('textinput') +'" onkeypress="return CitiChatService.action(\'keypress\', \''+ id +'\', event);" onkeyup="return CitiChatService.action(\'keyup\', \''+ id +'\', event);" onpaste="return CitiChatService.action(\'paste\', \''+ id +'\', event);" cols="20" rows="2"></textarea> \
+				</div>\
+				<div class="citi-chat-footer-second-div" id="'+ id.concat('chatfooterseconddiv') +'">\
+					<a onclick="CitiChatService.action(\'send\', \''+ id +'\')">\
+						<div class="citi-chat-footer-sendbtn" id="'+ id.concat('sendbtn') +'" title="'+ pageContent["sendButtonTitle"] +'">\
+							<img src="'+sendButtonIconUri+'" title="Send" /> \
+						</div>\
+					</a>\
+				</div>\
+			</div>';
+		return chatBoxTemplate;
+	};
+
+	var maxmin = function(id) {
+		if(escape(headermaxminbtnElement.innerHTML) == "%u2796") { //Minimize
+			messagesElement.style.display = "none";
+			chatfooterElement.style.display = "none";
+			if(feedbackoverlayElement.style.display == "block") {
+				feedbackoverlayElement.style.display = "none";
+			}
+			headercrossbtnElement.style.visibility = "hidden";
+			headermaxminbtnElement.innerHTML = "&#128470;";
+			headermaxminbtnElement.setAttribute("title", pageContent["maximizeButtonText"]);
+			chatheaderElement.style.top = "inherit";
+			chatheaderElement.style.bottom = "0";
+			errormessageElement.style.display = "none";
+		} else { //Maximize
+			messagesElement.style.display = "block";
+			chatfooterElement.style.display = "block";
+			if(feedbackoverlayElement.style.display == "none") {
+				feedbackoverlayElement.style.display = "block";
+			}
+			headercrossbtnElement.style.visibility = "visible";
+			headermaxminbtnElement.innerHTML = "&#10134;";
+			headermaxminbtnElement.setAttribute("title", pageContent["minimizeButtonText"]);
+			chatheaderElement.style.top = "0";
+			chatheaderElement.style.bottom = "inherit";
+		}
+	};
+
+	var close = function(id) {
+		if(escape(headercrossbtnElement.innerHTML) == "%u2190") {
+			messagesElement.innerHTML = "";
+			textinputElement.value = "";
+			chatoverlayElement.style.display = "block";
+			chatoverlayElement.setAttribute("data-mode", "visible");
+			showHideVideoMeetingIcon("citi-chat-header-meeting-room-icon", "none");
+			headerlabelElement.innerHTML = myName;
+			headerlabelElement.setAttribute("style", "width: 70%");
+			headercrossbtnElement.innerHTML = "&#10005;";
+			headercrossbtnElement.setAttribute("title", pageContent["closeButtonText"]);
+			return;
+		}
+		if(citichatElement) {
+			citichatElement.style.display = "none";
+			window.removeEventListener("resize", resizeWindow);
+		}
+	};
+	
+	var keypress = function(id, event) {
+		if (event.keyCode == 13) {
+			event.preventDefault();
+			send(id);
+		}
+	};
+
+	var keyup = function(id, event) {
+		if(textinputElement.value.trim() == "") {
+			sendbtnElement.style.display = "none";
+			chatfooterElement.style.height = "70px";
+			chatfooterFirstDivElement.style.width = "100%";
+			textinputElement.style.height = "35px";
+			textinputElement.style['overflow-y'] = "hidden";
+
+			messagesElement.style.bottom = "70px";
+			quickreplyElement.style.bottom = "70px";
+			scrollToBottom(chatBoxId, "messages");
+			return;
+		} else {
+			chatfooterFirstDivElement.style.width = "93%";
+			sendbtnElement.style.display = "flex";
+		}
+
+		var maxrows = 5;
+		var cols = textinputElement.cols;
+		var rows = Math.ceil(textinputElement.value.length /cols) ;
+
+		if(rows == 1) rows = 2;
+		else {
+			if(rows != 2) rows = rows - 1;
+			chatfooterElement.style.height = "auto";
+			textinputElement.style.height = "auto";
+		}
+		if(rows > maxrows) {
+			textinputElement.rows = maxrows;
+			textinputElement.style['overflow-y'] = "scroll";
+		} else {
+			textinputElement.rows = rows;
+			textinputElement.style['overflow-y'] = "hidden";
+		}
+		messagesElement.style.bottom = chatfooterElement.offsetHeight + "px";
+		quickreplyElement.style.bottom = chatfooterElement.offsetHeight + "px";
+		scrollToBottom(chatBoxId, "messages");
+	};
+
+	var scrollToBottom = function(id, element) {
+		var element = document.getElementById(id.concat(element));
+		element.scrollTop = element.scrollHeight - element.clientHeight;
+	};
+
+	var messageId = "";
+	var send = function(id, message, autoMessageType) {
+		var textBoxValue = htmlEncode(textinputElement.value.trim());
+		if(textBoxValue == "") return;
+		displayMessage(id, "append", {"messageText": "Hello"});
+		displayMessage(id, "append", {"messageText": textBoxValue}, "my", true, messageId);
+		textinputElement.value = "";
+		sendbtnElement.style.display = "none";
+		chatfooterElement.style.height = "70px";
+		chatfooterFirstDivElement.style.width = "100%";
+		textinputElement.style.height = "35px";
+		textinputElement.style['overflow-y'] = "hidden";
+
+		messagesElement.style.bottom = "70px";
+		quickreplyElement.style.bottom = "70px";
+		return false;	
+	};
+
+	var citiLogo = "data:image/png;base64,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";
+	var prevSide = myLastEnteredMmHh = theirLastEnteredMmHh = "";
+	var prependPrevSide = prependMyLastEnteredMmHh = prependTheirLastEnteredMmHh = "";
+	var currentDate = "";
+	var imageIconName = "";
+	var displayMessage = function(id, direction, messageObject, side, isbuttonClicked, messageId) {
+		var message = messageObject["messageText"];
+
+		var messageType = "";
+		if(messageObject.hasOwnProperty("messageType")) {
+			messageType = messageObject["messageType"].toLowerCase();
+		}
+
+		var lpStyle = "";
+		var lpMargin = "";
+
+		var imageDIv = "";
+		if(side == "my") {
+			imageDIv = '<div '+ lpStyle +' class="citi-chat-profile-image-my">'+ myName.charAt(0) +'</div>';
+		} else {
+			side = 'their';
+			imageIconName = document.getElementById(id.concat('headerlabel')).innerHTML;
+			imageDIv = '<div '+ lpStyle +' class="citi-chat-profile-image-their">'+ imageIconName.charAt(0) +'</div>';
+		}
+
+		if(direction == 'append') {
+			if(prevSide != "") {
+				if(prevSide != side) {
+					myLastEnteredMmHh = theirLastEnteredMmHh = "";
+				} else {
+					if(messagesElement.lastChild) {
+						messagesElement.lastChild.children[0].className += " citi-chat-no-after-before";
+						if(messagesElement.lastChild.children[0].children[1]) {
+							messagesElement.lastChild.children[0].children[1].style.display = "none";
+						}
+					}
+				}
+			}
+			prevSide = side;
+		} else {
+			if(prependPrevSide != "") {
+				if(prependPrevSide != side) {
+					prependMyLastEnteredMmHh = prependTheirLastEnteredMmHh = "";
+				} else {
+					if(prependmessagesElement.lastChild) {
+						prependmessagesElement.lastChild.children[0].className += " citi-chat-no-after-before";
+						if(prependmessagesElement.lastChild.children[0].children[1]) {
+							prependmessagesElement.lastChild.children[0].children[1].style.display = "none";
+						}
+					}
+				}
+			}
+			prependPrevSide = side;
+		}
+
+		var timeStamp = "";
+		if(messageObject.hasOwnProperty("messageTime")) {
+			timeStamp = messageObject["messageTime"];
+		}
+		var todayDate = formattedDate();
+		if(currentDate != "" && currentDate != todayDate) {
+			removeToday(id, currentDate);
+		}
+		currentDate = todayDate;
+		var messageDate = formattedDate(timeStamp);
+		if(currentDate == messageDate) {
+			insertDateSeparator(id, direction, pageContent["dateTodayText"]);
+		} else {
+			insertDateSeparator(id, direction, messageDate);
+		}
+
+		var sendingHtml = "";
+		var timeStampMessage = timeStampPaddingTop = "";
+		var hhMm = getHhMm(timeStamp);
+		var showTimeStamp = false;
+		if(direction == 'append') {
+			if(side == "my") {
+				if(myLastEnteredMmHh != hhMm) {
+					myLastEnteredMmHh = hhMm;
+					timeStampMessage = "<span>You</span> " + hhMm;
+					timeStampPaddingTop = "style='padding-top: 7px;'";
+					showTimeStamp = true;
+				}
+				
+				if(isbuttonClicked) {
+					if(pageContent["displayTick"]) {
+						sendingHtml = "<p class='citi-chat-sending-text' id='"+messageId+"'>Sending...</p>";
+					} else {
+						sendingHtml = "<p class='citi-chat-sending-text' id='"+messageId+"'></p>";
+					}
+				} else {
+					if(pageContent["displayTick"]) {
+						sendingHtml = "<p class='citi-chat-sending-text'>&#10003;&#10003;</p>";
+					} else {
+						sendingHtml = "<p class='citi-chat-sending-text'></p>";
+					}
+				}
+			} else {
+				if(theirLastEnteredMmHh != hhMm) {
+					theirLastEnteredMmHh = hhMm;
+					timeStampMessage = "<span>Citi Bot</span> " + hhMm;
+					timeStampPaddingTop = "style='padding-top: 7px;'";
+					showTimeStamp = true;
+				}
+			}
+		} else {
+			if(side == "my") {
+				if(prependMyLastEnteredMmHh != hhMm) {
+					prependMyLastEnteredMmHh = hhMm;
+					timeStampMessage = "<span>You</span> " + hhMm;
+					timeStampPaddingTop = "style='padding-top: 7px;'";
+					showTimeStamp = true;
+				}
+				if(pageContent["displayTick"]) {
+					sendingHtml = "<p class='citi-chat-sending-text'>&#10003;&#10003;</p>";
+				} else {
+					sendingHtml = "<p class='citi-chat-sending-text'></p>";
+				}
+			} else {
+				if(prependTheirLastEnteredMmHh != hhMm) {
+					prependTheirLastEnteredMmHh = hhMm;
+					timeStampMessage = "<span>Citi Bot</span> " + hhMm;
+					timeStampPaddingTop = "style='padding-top: 7px;'";
+					showTimeStamp = true;
+				}
+			}
+		}
+
+		var typingClass = "";
+		if(messageType == "typing") {
+			typingClass = "citi-chat-typing";
+			theirLastEnteredMmHh = "";
+		}
+
+		var timeStampDiv = '\
+		<div class="citi-chat-body-message '+typingClass+'"> \
+			<div class="citi-chat-body-message-timestamp-'+ side +'" ' + lpMargin + '> \
+				<span>'+ timeStampMessage +'</span> \
+			</div> \
+		</div>';
+		if(messageType == "auto") {
+			var html = '\
+			<div class="citi-chat-body-message" '+ timeStampPaddingTop +'> \
+				<div class="citi-chat-body-message-automessage" ' + lpMargin + '> \
+					'+ message + imageDIv +' \
+				</div> \
+			</div>';
+		} else {
+			var html = '\
+			<div class="citi-chat-body-message '+typingClass+'" '+ timeStampPaddingTop +'> \
+				<div class="citi-chat-body-message-'+ side +'message" ' + lpMargin + '> \
+					<p>'+ message +'</p>'+ imageDIv +' '+ sendingHtml +' \
+				</div> \
+			</div>';
+		}
+		if(direction == 'append') {
+			if(showTimeStamp) {
+				messagesElement.appendChild(htmlToElements(timeStampDiv));
+			}
+			messagesElement.appendChild(htmlToElements(html));
+			scrollToBottom(id, "messages");
+		} else {
+			if(showTimeStamp) {
+				prependmessagesElement.appendChild(htmlToElements(timeStampDiv));
+			}
+			prependmessagesElement.appendChild(htmlToElements(html));
+		}
+	};
+	
+	var formattedDate = function(epochTime) {
+		var d = "";
+		if(epochTime != "" && epochTime) {
+			d = new Date(epochTime);
+		} else {
+			d = new Date;
+		}
+
+		var month = String(d.getMonth() + 1);
+		var day = String(d.getDate());
+		var year = String(d.getFullYear());
+
+		if(month.length < 2) month = '0' + month;
+		if(day.length < 2) day = '0' + day;
+
+		return month + '/' + day + '/' + year;
+	};
+
+	var getHhMm = function(epochTime) {
+		var d = "";
+		if(epochTime != "" && epochTime) {
+			d = new Date(epochTime);
+		} else {
+			d = new Date;
+		}
+
+		var hours = String(d.getHours());
+		var minutes = String(d.getMinutes());
+		if(minutes.length < 2) minutes = '0' + minutes;
+
+		var meridiem = "AM";
+		if(hours >= 12) {
+			meridiem = "PM";
+			if(hours > 12) hours = hours - 12;
+		}
+		if(hours == "0") hours = "12";
+		return hours + ':' + minutes + ' ' + meridiem;
+	};
+
+	var isDateSeperatorPresent = {};
+	var isDateSeperatorPresentPrependDiv = {};
+	var insertDateSeparator = function(id, direction, date) {
+		if(direction == 'append') {
+			if(!date) {
+				date = "Today";
+			}
+			if(isDateSeperatorPresent.hasOwnProperty(date)) return;
+			isDateSeperatorPresent[date] = true;
+		} else {
+			if(!date) {
+				date = "Today";
+			}
+			if(isDateSeperatorPresentPrependDiv.hasOwnProperty(date)) return;
+			isDateSeperatorPresentPrependDiv[date] = true;
+		}
+		var html = '\
+		<div class="citi-chat-body-message"> \
+			<div class="citi-chat-date-separate"> <span> '+ date +' </span> </div> \
+		</div>';
+		if(direction == 'append') {
+			messagesElement.appendChild(htmlToElements(html));
+			scrollToBottom(id, "messages");
+		} else {
+			prependmessagesElement.appendChild(htmlToElements(html));
+		}
+	};
+
+	var scrollToBottom = function(id, element) {
+		var element = document.getElementById(id.concat(element));
+		element.scrollTop = element.scrollHeight - element.clientHeight;
+	};
+
+	var htmlEncode = function(str) {
+		return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+	};
+	
+	var htmlToElements = function(html) {
+		var template = document.createElement('template');
+		template.innerHTML = html;
+		if(template.content) {
+			return template.content.childNodes[1];
+		} else {
+			return template.children[0];
+		}
+	};
+
+	var pageContent = 	{
+		"closeButtonText": "Close",
+		"minimizeButtonText": "Minimize",
+		"maximizeButtonText": "Maximize",
+		"textInputPlaceholder": "Type a message",
+		"sendButtonTitle": "Send",
+		"closeButtonText": "Close"
+	};
+	var myId = myName = "";
+	var init = function(payload, displayLoaderFlag) {
+		myId = myName =  "";
+		convBeforeTime = "";
+		var isMaximized = true;
+
+		checkActiveTimeout = null;
+		isDateSeperatorPresent = {};
+		isDateSeperatorPresentPrependDiv = {};
+
+		if(payload.hasOwnProperty("id")) {
+			myId = payload["id"];
+		}
+		if(payload.hasOwnProperty("name")) {
+			myName = payload["name"];
+		}
+		if(payload.hasOwnProperty("isMaximized")) {
+			if(payload["isMaximized"]!= "") {
+				try {
+					isMaximized = JSON.parse(payload["isMaximized"]);
+				} catch(err){}
+			}
+		}
+		isMaximizedFlag = isMaximized;
+
+		var id = chatBoxId;
+		citichatElement = document.getElementById(id.concat('citichat'));
+		if(citichatElement) {
+			citichatElement.style.display = "block";
+		} else {
+			citichatElement = document.createElement("div");
+			citichatElement.setAttribute("id", id.concat("citichat"));
+			citichatElement.setAttribute("class", "citi-chat");
+			document.getElementsByTagName('body')[0].appendChild(citichatElement);
+			citichatElement.innerHTML = chatBox(id, "Citi Bot");
+			setIds(id);
+		}
+		resizeWindow();
+
+		if(!isMaximized) {
+			headermaxminbtnElement.click();
+		}
+
+		window.addEventListener("resize", resizeWindow);
+		window.addEventListener("maximizechat", function() {
+			var style = messagesElement.style.display;
+			if(style == "none") {
+				headermaxminbtnElement.click();
+			}
+		});
+		window.addEventListener("minimizechat", function() {
+			var style = messagesElement.style.display;
+			if(style == "" || style == "block") {
+				headermaxminbtnElement.click();
+			}
+		});
+	};
+
+	var closeChat = function() {
+		headercrossbtnElement.innerHTML = "";
+		close(chatBoxId);
+	};
+
+	var action = function(actionType, id, event, additionalData) {
+		if(actionType == "close") {
+			close(id, event);
+		} else if(actionType == "maxmin") {
+			maxmin(id);
+		} else if(actionType == "send") {
+			send(id);
+		} else if(actionType == "keypress") {
+			keypress(id, event);
+		} else if(actionType == "keyup") {
+			keyup(id, event);
+		} else if(actionType == "paste") {
+			paste(id, event);
+		}
+	};
+
+	var paste = function(id, event) {
+		scrollToBottom(chatBoxId, "messages");
+		setTimeout(function() {
+			if(textinputElement.value.trim() != "") {
+				keyup(id, event);
+			}
+		}, 100);
+	};
+
+	return {
+		init: init,
+		action: action,
+		close: closeChat
+	};
+})();
+
+	</script>
+	<script>
+			var chatPayload = {
+				"id": "123456",
+				"name": "Mayukh",
+				"isMaximized": "true",
+			};
+
+			CitiChatService.init(chatPayload);
+	</script>
+</html>
